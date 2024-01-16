@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Seleciona o botão pela referência 'id'
+            const botao = document.getElementById('botao-ajax');
+
+            // Desencadeia o evento pelo clique
+            botao.addEventListener('click', function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/formulario',
+                    data: { chave: document.getElementById('email').value },
+                    success: function (response) {
+                        console.log('Sucesso: ', response['message']);
+                    },
+                    error: function (error) {
+                        console.error('Erro: ', error);
+                    }
+                });
+
+            });
+        });
+    </script>
+    
+</head>
+
+<body>
+    <input type="email" id="email">
+    <button id="botao-ajax">Enviar</button>
+</body>
+
+</html>
